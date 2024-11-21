@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title Users List
+    link(rel='stylesheet', href='/vendor/bootstrap/bootstrap.min.css')
+  body
+    .container
+      h1 Users List
+      table.table
+        thead
+          tr
+            th Username
+            th Email
+            th Actions
+        tbody
+          each user in users
+            tr
+              td= user.username
+              td= user.email
+              td: a(href=/users/${user.id}) View
