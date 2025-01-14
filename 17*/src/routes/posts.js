@@ -7,20 +7,20 @@ export default (app) => {
 
   app.get("/posts/:id", (req, res) => {
     const post = posts.find(({ id }) => id === req.params.id);
-
+  
     if (!post) {
       res.status(404).send("Post not found");
       return;
     }
-
+  
     res.render("src/views/posts/show", { post });
   });
-
+  
   app.get("/posts", (req, res) => {
     const data = {
       posts,
     };
-
+  
     res.render("src/views/posts/index", data);
   });
 

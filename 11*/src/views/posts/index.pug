@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Список постов
+  body
+    h1 Список постов
+    ul
+      each post in posts
+        li
+          a(href=route('post', { id: post.id }))= post.title
+
+    if currentPage > 1
+      a(href=route('posts', { page: currentPage - 1 })) Назад
+
+    if currentPage < totalPages
+      a(href=route('posts', { page: currentPage + 1 })) Вперед

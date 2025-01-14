@@ -1,17 +1,17 @@
 doctype html
 html
   head
-    title Логин
+    title Login
   body
-    h1 Вход в систему
-    if errorMessage
-      p.error= errorMessage
+    if error
+      p(style="color: red") #{error}
+
     form(action="/sessions" method="post")
       div
-        label Имя пользователя
+        label Имя пользователя:
         input(type="text" name="username" required)
       div
-        label Пароль
+        label Пароль:
         input(type="password" name="password" required)
       div
         input(type="submit" value="Войти")

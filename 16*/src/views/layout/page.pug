@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title My Blog
+  body
+    if flashMessages.success.length > 0
+      div.alert.alert-success
+        each message in flashMessages.success
+          p= message
+
+    if flashMessages.error.length > 0
+      div.alert.alert-danger
+        each message in flashMessages.error
+          p= message
+
+    block content

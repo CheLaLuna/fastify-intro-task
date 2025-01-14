@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title Edit Post
+  body
+    h1 Edit Post
+    form(action=`/posts/${post.id}` method='POST')
+      div
+        label(for='title') Title:
+        input(type='text' name='title' value=post.title)
+        if errors.title
+          p.error= errors.title
+      div
+        label(for='body') Body:
+        textarea(name='body')= post.body
+        if errors.body
+          p.error= errors.body
+      div
+        button(type='submit') Update Post

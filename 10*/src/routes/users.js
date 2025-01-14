@@ -31,7 +31,9 @@ export default (app) => {
     users.push(user);
 
     // BEGIN (write your solution here)
-
+    // Редирект на страницу созданного пользователя
+    const redirectUrl = app.reverse("user", { id: user.id });
+    res.redirect(302, redirectUrl);
     // END
   });
 

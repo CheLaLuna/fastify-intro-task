@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title Создание новой статьи
+  body
+    h1 Создание новой статьи
+    form(action="/articles" method="post")
+      div
+        label(for="title") Title
+        input(type="text" name="title" value=formData.title)
+        if errors.title
+          p.error= errors.title
+      div
+        label(for="text") Text
+        textarea(name="text")= formData.text
+        if errors.text
+          p.error= errors.text
+      input(type="submit" value="Создать")

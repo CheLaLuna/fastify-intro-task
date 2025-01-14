@@ -1,20 +1,22 @@
 doctype html
-html
+html(lang="ru")
   head
-    title Users List
-    link(rel='stylesheet', href='/vendor/bootstrap/bootstrap.min.css')
+    title Список пользователей
   body
-    .container
-      h1 Users List
-      table.table
+    div.container
+      h1.mt-4.mb-3 Список пользователей
+      table.table.table-hover
         thead
           tr
+            th ID
             th Username
             th Email
             th Actions
         tbody
           each user in users
             tr
+              td= user.id
               td= user.username
               td= user.email
-              td: a(href=/users/${user.id}) View
+              td
+                a.btn.btn-primary(href=`/users/${user.id}`) View

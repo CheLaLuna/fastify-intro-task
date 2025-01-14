@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Users
+  body
+    .container
+      .mb-3
+        label(for="term" class="form-label") Search Users
+        input#term(name="term" type="text" value=term || '' class="form-control" placeholder="Enter username")
+        button(type="submit" class="btn btn-primary") Search
+
+      if users.length === 0
+        p Нет пользователей для отображения.
+      else
+        each user in users
+          p #{user.username} - #{user.email}

@@ -4,26 +4,30 @@ export default (app) => {
   const users = generateUsers();
 
   // BEGIN (write your solution here)
-  app.get("/sessions/new", (req, res) => {
-    const errorMessage = req.query.error ? "Wrong username or password" : null;
-    res.view("src/views/sessions/new", { errorMessage });
+  app.get("/sessions/new", async (req, res) => {
+    res.view("src/views/sessions/new", { error: null });
   });
 
-  app.post("/sessions", (req, res) => {
+  app.post("/sessions", async (req, res) => {
     const { username, password } = req.body;
-    const user = users.find(u => u.username === username);
 
-    if (user && decrypt(user.password) === password) {
-      req.session.userId = user.id;
-      return res.redirect("/");
+    const user = users.find((u) => u.username === username);
+    const hashedPassword = decrypt(password);
+
+    if (!user || user.password !== hashedPassword) {
+
+      return res.view("src/views/sessions/new", { error: "Wrong username or password" });
     }
 
-    res.redirect("/sessions/new?error=true");
+    req.session.username = user.username;
+
+    res.redirect("/");
   });
 
-  app.post("/sessions/delete", (req, res) => {
-    delete req.session.userId;
-    res.redirect("/");
+  app.post("/sessions/delete", async (req, res) => {
+    req.destroySession(() => {
+      res.redirect("/");
+    });
   });
   // END
 };

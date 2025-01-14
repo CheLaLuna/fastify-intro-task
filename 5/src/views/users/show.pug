@@ -1,15 +1,12 @@
 doctype html
-html
+html(lang="ru")
   head
-    title User Details
-    link(rel='stylesheet', href='/vendor/bootstrap/bootstrap.min.css')
+    title Пользователь
   body
-    .container
-      h1 User Details
-      p
-        strong Username:
-        | #{user.username}
-      p
-        strong Email:
-        | #{user.email}
-      a(href='/users') Back to Users List
+    div.container
+      h1.mt-4.mb-3 User
+      div.card
+        div.card-body
+          h5.card-title Name: #{user.username}
+          p.card-text Email: #{user.email}
+          p.card-text ID: #{user.id}

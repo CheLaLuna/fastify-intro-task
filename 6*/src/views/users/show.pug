@@ -1,0 +1,8 @@
+extends ../layout/page
+
+block content
+  h1 Пользователь: #{user.username}
+  ul
+    li ID: #{user.id}
+    li Email: #{user.email}
+  a(href="/users") Вернуться к списку

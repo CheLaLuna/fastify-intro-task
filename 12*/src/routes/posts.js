@@ -47,6 +47,41 @@ export default (app) => {
   });
 
   // BEGIN (write your solution here)
+  app.get("/posts/:id/edit", (req, res) => {
+    const post = posts.find(({ id }) => id === req.params.id);
 
+    if (!post) {
+      res.status(404).send("Post not found");
+      return;
+    }
+    res.view("src/views/posts/edit", { post, errors: {} });
+  });
+
+  app.post("/posts/:id", (req, res) => {
+    const postIndex = posts.findIndex(({ id }) => id === req.params.id);
+    
+    if (postIndex === -1) {
+      res.status(404).send("Post not found");
+      return;
+    }
+
+    const { title, body } = req.body;
+
+    const errors = {};
+    if (!title) {
+      errors.title = "Title is required";
+    }
+    if (!body) {
+      errors.body = "Body is required";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      return res.view("src/views/posts/edit", { post: { title, body }, errors });
+    }
+
+    posts[postIndex] = { ...posts[postIndex], title, body };
+    
+    res.redirect("/posts");
+  });
   // END
 };

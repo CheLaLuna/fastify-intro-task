@@ -1,13 +1,12 @@
 doctype html
 html
   head
-    title Главная страница
+    title Home
   body
-    h1 Главная страница
-    if !session.userId
-      p Необходимо войти в систему.
+    if !username
+      p Добро пожаловать, гость
       a(href="/sessions/new") Войти
     else
-      p Привет, #{session.userId}!
+      p Привет, #{username}!
       form(action="/sessions/delete" method="post")
-        input(type="submit" value="Выйти")
+        button(type="submit") Выйти

@@ -5,7 +5,7 @@ import formbody from "@fastify/formbody";
 import sqlite3 from "sqlite3";
 
 import addRoutes from "./routes/index.js";
-import prepareDatabase from "./dbInit.js";
+import prepareDatabase from "./dbinit.js";
 
 export default async () => {
   const app = fastify();
